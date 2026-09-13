@@ -1,8 +1,9 @@
-# Newscast Text Extraction
+# Broadcast Text Extraction
 
-Extracting structured information from Portuguese television newscasts: segmenting
-continuous broadcasts into individual news stories, and auditing the reliability of
-automatic speech transcripts before anything downstream depends on them.
+Extracting structured information from Portuguese election broadcast media: segmenting
+continuous newscasts into individual stories, attributing debate speech to candidates,
+and auditing the reliability of automatic transcripts before anything downstream depends
+on them.
 
 Corpus: 14 full `Telejornal` broadcasts from RTP and TVI, plus the televised
 presidential debates, recorded around the 2026 Portuguese presidential election.
