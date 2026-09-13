@@ -4,8 +4,8 @@ Extracting structured information from Portuguese television newscasts: segmenti
 continuous broadcasts into individual news stories, and auditing the reliability of
 automatic speech transcripts before anything downstream depends on them.
 
-Corpus: 14 full `Telejornal` broadcasts from RTP and TVI, recorded around the 2026
-Portuguese presidential election.
+Corpus: 14 full `Telejornal` broadcasts from RTP and TVI, plus the televised
+presidential debates, recorded around the 2026 Portuguese presidential election.
 
 ---
 
@@ -35,7 +35,29 @@ independent of the audio entirely.
 | `04_newscast_debate_correlation` | Relating newscast story coverage to televised debate content |
 | `05_cross_channel_story_similarity` | Comparing how the two channels covered the same stories |
 
-Around 3,500 lines of Python across the five notebooks.
+Around 3,500 lines of Python across the five newscast notebooks, plus the debate
+speech processing in `debates/`.
+
+## Debate speech processing
+
+`debates/`
+
+The same corpus includes the televised debates, where the problem is different. There
+are no on-screen headlines to segment on, and the useful unit is not a story but a
+stretch of speech attributable to one candidate.
+
+| File | Contents |
+|---|---|
+| `processing/get_audio_and_speech_data.py` | Assembles aligned audio and transcript records |
+| `processing/get_cleaned_audio_data.py` | Cleaning, with KMeans over acoustic features to separate speech conditions |
+| `processing/get_segment_information.py` | Builds one dataset of filtered segments, each labelled by candidate |
+| `01_speech_information.ipynb` | Topic identification over the transcripts |
+| `02_audio_and_speech_dataframe.ipynb` | Assembles the combined analysis frame |
+
+`get_segment_information.py` carries its own caveat in a comment at the top, noting that
+this is the simpler version of the mapping. Attributing a segment to a speaker is where
+most of the error enters, and the code says so rather than presenting the labels as
+settled.
 
 ## Treating the text as unreliable by default
 
@@ -106,12 +128,12 @@ jupyter lab notebooks/
 This was a four-person university project (Processing Big Data, Instituto Superior
 Técnico) covering both newscasts and televised debates.
 
-**This repository contains only the newscast text and speech work, which is mine**
-(Kristine Saralidze): the OCR parsing and segmentation pipeline, the speech transcript
-quality audit, and the cross-channel story analysis.
+**This repository contains the text and speech work, which is mine** (Kristine
+Saralidze): the OCR parsing and segmentation pipeline, the speech transcript quality
+audit, the cross-channel story analysis, and the debate speech processing.
 
-The debate video and visual analysis was carried out by **Diego Soler**, **Rediet
-Mulugeta** and **Truls Saether**, and is not included here.
+The video and visual analysis was carried out by **Diego Soler**, **Rediet Mulugeta**
+and **Truls Saether**, and is not included here.
 
 ## Licence
 
